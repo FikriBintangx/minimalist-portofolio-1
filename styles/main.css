@@ -230,45 +230,60 @@ footer {
 /* Responsive Portrait Styles */
 @media (max-width: 600px) {
     header h1 {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
         margin-top: 20px;
-        padding: 6px 10px;
+        padding: 6px 12px;
     }
+
     header {
-        padding-top: 48px;
+        padding-top: 60px;
     }
+
     .lanyard-bg-header {
-        width: 450px;
-        height:450px;
-        top: -40px;
+        width: 300px;
+        height: 300px;
+        top: -60px;
+        left: 50%;
+        transform: translateX(-50%);
     }
-.logo-toggle {
-    top: 15px;
-    right: 15px;
-    width: 60px;
-    height: 60px;
-}
+
+    .logo-toggle {
+        top: 12px;
+        right: 12px;
+        width: 48px;
+        height: 48px;
+    }
+
     nav {
-        top: 60px;
-        right: 8px;
-        padding: 12px 10px;
+        top: 64px;
+        right: 10px;
+        padding: 14px 12px;
     }
+
     section {
-        margin: 20px 0;
-        padding: 10px;
+        margin: 24px 0;
+        padding: 12px 16px;
     }
+
     .lanyard-bg {
-        width: 180px;
-        height: 180px;
+        width: 160px;
+        height: 160px;
+        margin: 0 auto;
     }
+
     .project {
-        margin-bottom: 20px;
-        padding: 10px;
+        margin-bottom: 24px;
+        padding: 12px;
     }
+
     footer {
-        font-size: 0.9rem;
+        font-size: 0.95rem;
         text-align: center;
-        padding: 10px 0;
+        padding: 12px 0;
+    }
+
+    body {
+        padding: 0 16px;
     }
 }
 
