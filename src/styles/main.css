@@ -1,0 +1,292 @@
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', Arial, sans-serif;
+    background: #111;
+    color: #fff;
+    line-height: 1.6;
+    transition: background 0.5s;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    padding-top: 80px;
+    background: transparent;
+    box-shadow: none;
+    animation: fadeDown 1s;
+}
+
+.lanyard-bg-header {
+    position: absolute;
+    top: -120px;
+    left: 50%;
+    transform: translateX(-50%) rotate(0deg);
+    width: 800px;
+    height: 800px;
+    opacity: 0.13;
+    z-index: 1;
+    pointer-events: none;
+    transition: transform 0.5s cubic-bezier(.77,0,.18,1);
+    animation: lanyardSwing 6s infinite ease-in-out;
+    filter: grayscale(1) drop-shadow(0 0 32px #0077ff55);
+}
+
+.logo-toggle {
+    position: absolute;
+    top: 110px;
+    right: 110px;
+    width: 114px;
+    height: 114px;
+    cursor: pointer;
+    z-index: 10;
+    transition: 
+        transform 0.3s cubic-bezier(.77,0,.18,1),
+        box-shadow 0.3s cubic-bezier(.77,0,.18,1);
+    background: #58585892;
+    object-fit: contain;
+}
+
+.logo-toggle.active {
+    transform: scale(1.18);
+    box-shadow: 0 0 16px 4px #a2a2a288;
+}
+
+h1 {
+    margin: 0;
+    font-size: 2.5em;
+    animation: fadeIn 1s ease-in-out;
+}
+
+header h1 {
+    margin-top: 32px;
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    background: transparent;
+    padding: 8px 16px;
+    border-radius: 8px;
+    box-shadow: none;
+    color: #fff;
+}
+
+nav {
+    position: absolute;
+    top: calc(10px + 14px + 12px); /* 10px top + 14px logo height + 12px jarak bawah logo */
+    right: 10px;
+    background: rgba(34,34,34,0.95);
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+    padding: 24px 32px;
+    z-index: 9;
+    opacity: 1;
+    transition: opacity 0.4s, transform 0.4s;
+}
+
+.nav-hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-20px);
+    transition: opacity 0.4s, transform 0.4s;
+}
+
+nav ul {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    align-items: flex-start;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.1em;
+    padding: 6px 0;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #0077ff;
+}
+
+section {
+    margin: 40px auto;
+    max-width: 500px;
+    background: rgba(34, 34, 34, 0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 16px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.18);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 30px;
+    animation: fadeUp 1s;
+    position: relative;
+    z-index: 2;
+}
+
+section#projects {
+    position: relative;
+    overflow: hidden;
+    min-height: 320px;
+}
+
+.lanyard-bg {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 320px;
+    height: 320px;
+    opacity: 0.13;
+    transform: translateX(-50%);
+    z-index: 0;
+    pointer-events: none;
+    animation: lanyardSwing 6s infinite ease-in-out;
+    filter: grayscale(1) drop-shadow(0 0 32px #0077ff55);
+}
+
+.project {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 30px;
+    padding: 15px;
+    border-left: 3px solid #0077ff;
+    background: rgba(34, 34, 34, 0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 16px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.18);
+    border: 1px solid rgba(255,255,255,0.08);
+    animation: fadeUp 1.2s;
+}
+
+.contact-icons {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 18px;
+    align-items: flex-start;
+}
+
+.contact-icons a {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 1.15em;
+    color: #fff;
+    background: #222;
+    padding: 12px 22px;
+    border-radius: 10px;
+    text-decoration: none;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    transition: background 0.3s, color 0.3s, transform 0.2s;
+    opacity: 0;
+    transform: translateY(40px);
+    will-change: opacity, transform;
+}
+
+.contact-icons a.visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.7s cubic-bezier(.77,0,.18,1), transform 0.7s cubic-bezier(.77,0,.18,1);
+}
+
+.contact-icons a:hover {
+    background: #0077ff;
+    color: #fff;
+    transform: translateY(-2px) scale(1.06);
+}
+
+.contact-icons i {
+    font-size: 1.7em;
+    transition: color 0.3s;
+}
+
+.contact-icons a:hover i.fa-instagram { color: #e4405f; }
+.contact-icons a:hover i.fa-whatsapp { color: #25d366; }
+.contact-icons a:hover i.fa-envelope { color: #ffae00; }
+
+footer {
+    text-align: center;
+    padding: 20px 0;
+    color: #888;
+    background: transparent;
+    animation: fadeDown 1.2s;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Responsive Portrait Styles */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 1.2rem;
+        margin-top: 20px;
+        padding: 6px 10px;
+    }
+    header {
+        padding-top: 48px;
+    }
+    .lanyard-bg-header {
+        width: 320px;
+        height: 320px;
+        top: -40px;
+    }
+    .logo-toggle {
+        top: 4px;
+        right: 4px;
+        width: 12px;
+        height: 12px;
+    }
+    nav {
+        top: 60px;
+        right: 8px;
+        padding: 12px 10px;
+    }
+    section {
+        margin: 20px 0;
+        padding: 10px;
+    }
+    .lanyard-bg {
+        width: 180px;
+        height: 180px;
+    }
+    .project {
+        margin-bottom: 20px;
+        padding: 10px;
+    }
+    footer {
+        font-size: 0.9rem;
+        text-align: center;
+        padding: 10px 0;
+    }
+}
+
+/* Animations */
+@keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-30px);}
+    to { opacity: 1; transform: translateY(0);}
+}
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px);}
+    to { opacity: 1; transform: translateY(0);}
+}
+@keyframes fadeIn {
+    from { opacity: 0;}
+    to { opacity: 1;}
+}
+@keyframes lanyardSwing {
+    0% { transform: translateX(-50%) rotate(-10deg);}
+    50% { transform: translateX(-50%) rotate(10deg);}
+    100% { transform: translateX(-50%) rotate(-10deg);}
+}

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimalist Portfolio</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="animations/animations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+ <img src="img/avatar.png" alt="Avatar Background" class="lanyard-bg-header" />
+  <img src="img/logo.png" alt="Logo" class="logo-toggle" id="logoToggle" />
+        <h1>Welcome to My Portfolio</h1>
+        <nav id="mainNav" class="nav-hidden">
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section id="about">
+        <h2>About Me</h2>
+        <p>Helloo aku FIkri Bintang Purnomo dari Tangerang.</p>
+    </section>
+    <section id="projects">
+        <h2>My Projects</h2>
+        <div class="project">
+            <h3>E-Commerce "CosmiCOffeee</h3>
+            <p>Cosmicoffe adalah platform e-commerce yang menyediakan berbagai produk kopi berkualitas dari seluruh Indonesia. Website ini menawarkan pengalaman belanja yang mudah, fitur pencarian produk, detail produk lengkap, serta sistem pembayaran yang aman. Cocok untuk para pecinta kopi yang ingin menemukan dan membeli kopi favorit secara online.</p>
+        </div>
+        <!-- Add more projects as needed -->
+    </section>
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <div class="contact-icons">
+            <a href="https://instagram.com/stern95_" target="_blank" title="Instagram">
+                <i class="fab fa-instagram"></i>
+                stern95_
+            </a>
+            <a href="https://wa.me/6281292870932" target="_blank" title="WhatsApp">
+                <i class="fab fa-whatsapp"></i>
+                081292870932
+            </a>
+            <a href="mailto:fikbintang01@gmail.com" title="Email">
+                <i class="fas fa-envelope"></i>
+                fikbintang01@gmail.com
+            </a>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2025 My Portfolio</p>
+    </footer>
+    <script>
+        // Lanyard interaktif
+        const lanyard = document.querySelector('.lanyard-bg-header');
+        let isDragging = false;
+        let lastX = 0;
+
+        document.addEventListener('mousedown', e => {
+          if (!lanyard) return;
+          isDragging = true;
+          lastX = e.clientX;
+        });
+
+        document.addEventListener('mouseup', () => {
+          isDragging = false;
+          if (lanyard) lanyard.style.transform = 'translateX(-50%) rotate(0deg)';
+        });
+
+        document.addEventListener('mousemove', e => {
+          if (!lanyard) return;
+          if (isDragging) {
+            const deltaX = e.clientX - lastX;
+            lanyard.style.transform = `translateX(-50%) rotate(${deltaX * 0.08}deg)`;
+          } else {
+            // Lentur mengikuti mouse (tanpa drag)
+            const x = e.clientX / window.innerWidth - 0.5;
+            lanyard.style.transform = `translateX(-50%) rotate(${x * 20}deg)`;
+          }
+        });
+
+        // Animasi scroll contact
+        function revealContacts() {
+          const contacts = document.querySelectorAll('.contact-icons a');
+          contacts.forEach((el, i) => {
+            const rect = el.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 40) {
+              setTimeout(() => el.classList.add('visible'), i * 120);
+            }
+          });
+        }
+        window.addEventListener('scroll', revealContacts);
+        window.addEventListener('DOMContentLoaded', revealContacts);
+
+        const logo = document.getElementById('logoToggle');
+        const nav = document.getElementById('mainNav');
+
+        logo.addEventListener('click', () => {
+            logo.classList.add('active');
+            nav.classList.toggle('nav-hidden');
+            setTimeout(() => logo.classList.remove('active'), 350);
+        });
+
+        // Optional: klik di luar nav untuk menutup
+        document.addEventListener('click', (e) => {
+            if (!nav.contains(e.target) && e.target !== logo && !nav.classList.contains('nav-hidden')) {
+                nav.classList.add('nav-hidden');
+            }
+        });
+    </script>
+</body>
+</html>
